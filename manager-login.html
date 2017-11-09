@@ -24,7 +24,7 @@
 				</div>
 			</div>
 		</nav>
-		<div class="col-sm-12 middiv">
+		<div class="col-sm-12">
 			<div class="col-sm-1"></div>
 			<div class="col-sm-10">
 				<div class="col-sm-8">
@@ -104,61 +104,6 @@
 		<script src="js/jquery.js"></script>
 		<script src="./bootstrap/js/bootstrap.min.js"></script>
 		<script src="./js/jquery-1.8.3.min.js"></script>
-		<script type="text/javascript">
-			$('#Mclick').on('click',function(){
-				var result = "";
-			    var arr = [];
-			    for(var i=0;i<26;i++){
-			    	arr.push(String.fromCharCode(65+i));
-			    }
-			    for(var i=0;i<26;i++){
-			    	arr.push(String.fromCharCode(97+i));
-			    }
-			    for(var i=0;i<10;i++){
-			    	arr.push(String.fromCharCode(48+i));
-			    }
-			    for(var i = 0;i<4;i++){
-			        var ranNum = Math.floor(Math.random()*62);
-			        result+=arr[ranNum];
-			    }
-			    document.getElementById("Mconfirm").innerHTML = result;
-			});
-			$("#Msub").on("click",function () {
-			    var ck = document.getElementById("ck");
-			    var Mconfirm = document.getElementById("Mconfirm");
-			    var content = Mconfirm.innerHTML;
-			    console.log(content);
-			    console.log(ck.value.toUpperCase());
-			    if(ck.value.toUpperCase()==content.toUpperCase()){
-			        alert("验证码输入正确！");
-			        var obj={
-			            Musername:$("#username").val(),
-			            Mpassword:$("#pwd").val(),
-			        };
-			        var Data=$.param(obj);
-			        $.ajax({
-			            url:"Manager-login.php",
-			            type:"get",
-			            data:Data,
-			            dataType:"text",
-			            success:function (dat) {
-			                if(dat==1){
-			//                  document.cookie="Musername="+$("#username").val();
-			//                  document.cookie="Mpassword="+$("#pwd").val();
-			                    alert("登录成功！正在跳转。。。");
-			                    $(window).attr("location","back_content.html");
-			                }else {
-			                    $("#username").val("");
-			                    $("#pwd").val("");
-			                    alert("账号名或者密码错误！请重新输入。。。");
-			                }
-			            }
-			        })
-			    }else {
-			        alert("验证码为空或者输入不正确。。。");
-			        ck.value = "";
-			    }
-			});
-		</script>
+		<script src="js/manager-login.js" type="text/javascript" charset="utf-8"></script>
 	</body>
 </html>
