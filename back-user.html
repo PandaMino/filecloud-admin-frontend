@@ -1,0 +1,662 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1 , user-scalable=no">
+    <title>用户列表</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" class="css">
+    <style>
+        *{
+            list-style: none;
+            text-decoration: none;
+        }
+        #nav1 ul{
+            padding-left:0;
+            border:1px solid #ddd;
+            border-radius: 5px;
+        }
+        #nav1 ul li{
+            line-height: 40px;
+            padding-left:15px;
+
+            border-bottom:1px solid #ddd;
+        }
+        #nav1 ul li a:hover{
+            text-decoration: none;
+        }
+        #nav1 ul li.active,#nav1 ul li:hover{
+            background: lightskyblue;
+        }
+        #nav1 ul li.active a,#nav1 ul li:hover>a{
+            color:#fff;
+        }
+        .col-1{
+            padding-left:0;
+            padding-right:0;
+        }
+        #search .alert{
+            margin-top:10px;
+        }
+        footer{
+            margin-top:25px;
+            border-top:1px solid #ddd;
+        }
+        #addModal .body{
+            padding:10px;
+        }
+        #lists .table thead tr td{
+            font-weight: bold;
+            font-size:18px;
+        }
+        #lists .table tbody tr td{
+            line-height: 40px;
+            height:40px;
+        }
+        .page{
+            margin-top:40px;
+            float: right;
+            margin-right:50px;
+        }
+        #pageStyle{
+            display: inline-block;
+            width:40px;
+            height:40px;
+            text-align: center;
+            line-height: 40px;
+            border: 1px solid #ccc;
+            font-size: 18px;
+
+
+            margin-right:6px;
+
+        }
+
+       
+    </style>
+</head>
+<body>
+
+
+<!-----导航------>
+<nav class="navbar navbar-default">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-10">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="#" class="navbar-brand">后台管理</a>
+                <!-----汉堡按钮----->
+
+                <button class="navbar-toggle" data-toggle="collapse" data-target="#admins">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="admins">
+                <ul class="nav navbar-nav">
+                    <li><a href="#"><span class="glyphicon glyphicon-home"></span> 后台首页</a></li>
+                    <li class="active"><a href=""><span class="glyphicon glyphicon-user"></span> 用户管理</a></li>
+                    <li><a href="back-content.html"><span class="glyphicon glyphicon-list-alt"></span> 文件管理</a></li>
+
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="name">
+                            admin<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="#"><span class="glyphicon glyphicon-screenshot"></span> 前台首页</a></li>
+                            <li><a href=""><span class="glyphicon glyphicon-user"></span> 个人主页</a></li>
+                            <li><a href=""><span class="glyphicon glyphicon-cog"></span> 个人设置</a></li>
+                            <li><a href=""><span class="glyphicon glyphicon-credit-card"></span> 账户中心</a></li>
+                            <li><a href=""><span class="glyphicon glyphicon-heart"></span> 我的收藏</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#"><span class="glyphicon glyphicon-off"></span> 退出</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-sm-1"></div>
+
+
+
+
+
+</nav>
+
+
+<!------内容------>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2 col-1">
+            <nav id="nav1">
+                <ul>
+                    <li class="active" id="muser"><a href="#">用户管理</a></li>
+                    <li id="suser"><a href="#">用户搜索</a></li>
+
+                </ul>
+            </nav>
+        </div>
+        <div class="col-sm-10">
+            用户管理
+            <hr>
+            <ul class="nav nav-tabs">
+                <li class="active"  id="showuser"><a href="#lists" data-toggle="tab">用户列表</a></li>
+                <li id="searchuser"><a href="#search" data-toggle="tab">用户搜索</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active clearfix" id="lists">
+                    <table class="table">
+                        <thead>
+                           <tr>
+                               <td>用户名</td>
+                               <td>性别</td>
+                               <td>年龄</td>
+                               <td>等级</td>
+                               <td>操作</td>
+                           </tr>
+                        </thead>
+                        <tbody>
+
+
+
+                        </tbody>
+                    </table>
+                    <!--<ul class="pagination pull-right" id="pages">-->
+                        <!--<li><a href="#">&laquo;</a></li>-->
+                        <!--&lt;!&ndash;<li class="active"><a href="#">1</a></li>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<li><a href="#">2</a></li>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<li><a href="#">3</a></li>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<li><a href="#">4</a></li>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<li><a href="#">5</a></li>&ndash;&gt;-->
+                        <!--<li><a href="#">&raquo;</a></li>-->
+                    <!--</ul>-->
+
+
+
+
+
+                </div>
+                <div class="tab-pane" id="search">
+                       <div class="alert alert-info">
+                           <a class="close" data-dismiss="alert" href="#" aria-hidden="true">
+                               &times;
+                           </a>
+                           <strong>技巧提示:</strong>支持模糊搜索和匹配搜索，匹配搜索使用*代替！
+                       </div>
+                    <form action="#" role="form" id="searchform" onsubmit="return Search()">
+                        <div class="form-group">
+                            <label for="username" class="control-label">用户名:</label>
+                            <input type="text" class="form-control" placeholder="请输入用户名" id="username" required="required">
+                        </div>
+                        <div class="form-group">
+                            <label for="UID" class="control-label">UID:</label>
+                            <input type="text" class="form-control" placeholder="输入用户ID" id="UID" required="required">
+                        </div>
+                        <div class="form-group">
+                            <label for="groups" class="control-label">选择用户组</label>
+                            <select name="" id="groups" class="form-control">
+                                <option value="1">限制会员</option>
+                                <option value="2">非限制会员</option>
+                                <option value="3">大会员</option>
+                                <option value="4">SVIP</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-default">提交</button>
+
+
+
+                    </form>
+
+
+
+
+
+
+
+
+                </div>
+
+            </div>
+
+
+
+
+        </div>
+
+
+
+
+
+
+
+    </div>
+
+
+
+
+</div>
+
+<footer class="text-center col-sm-6 col-sm-offset-3">
+    <p>Copyright@2012-2015     ICP备xxxxxxxx号</p>
+
+</footer>
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+
+<script>
+
+    $(function () {
+        load();
+
+        function load() {
+            $.ajax({
+                type:'get',
+                dataType:'json',
+                data:{
+
+                },
+                url:'showusers.php',
+                success:function (data) {
+
+                    //--清空表格
+
+                    $('#lists tbody:eq(0)').html('');
+                    $('#lists thead:eq(0)').css({
+                        textAlign:'center'
+                    });
+                    $('#lists tbody:eq(0)').css({
+                        textAlign:'center'
+                    });
+                    $.each(data,function (index,element) {
+                        //---定义新的一行
+                        var newTr = $('<tr></tr>');
+
+                        //---定义用户组
+                        var newName = $('<td>'+element.name+'</td>');
+                        //---定义性别组
+                        var newSex = $('<td>'+element.sex+'</td>');
+                        //---定义年龄组
+                        var newAge = $('<td>'+element.age+'</td>');
+                        //---定义等级组
+                        var newLevel = $('<td>'+element.juris+'</td>');
+                        if(element.juris==1){
+                            //---定义操作钮
+                            var newEditor = $('<td class="dropdown"><button class="btn btn-default dropdown-toggle" data-toggle="dropdown">操作<span class="caret"></span></button><ul class="dropdown-menu" role="menu"><li class="dele"><a href="###">删除</a></li><li class="lock"><a href="###">锁定</a></li><li class="edit"><a href="###">修改密码</a></li></ul></td>');
+                        }else{
+                            var newEditor = $('<td class="dropdown"><button class="btn btn-default dropdown-toggle" data-toggle="dropdown">操作<span class="caret"></span></button><ul class="dropdown-menu" role="menu"><li class="dele"><a href="###">删除</a></li><li class="lock"><a href="###">解锁</a></li><li class="edit"><a href="###">修改密码</a></li></ul></td>');
+                        }
+                        //---添加
+                        newTr.append(newName);
+                        newTr.append(newSex);
+                        newTr.append(newAge);
+                        newTr.append(newLevel);
+                        newTr.append(newEditor);
+                        $('#lists tbody:eq(0)').append(newTr);
+                    });
+                    LoadPages();
+//               //----设置删除函数
+                    $('.dele').on('click',function () {
+                        //---获取用户名
+                        var Btr = $(this).parent().parent().parent();
+                        var Dname = Btr.children()[0].innerHTML;
+                        console.log(Dname);
+                        $.ajax({
+                            type:'get',
+                            dataType:'json',
+                            data:{
+                                name:Dname
+                            },
+                            url:'deleuser.php',
+                            success:function (data) {
+                                console.log(data);
+                                load();
+                            },
+                            error:function () {
+                                console.log(0);
+                            }
+                        })
+
+                    });
+                 //-----设置锁定函数
+                   $('.lock').on('click',function () {
+                       //---获取用户名
+                       var Btr = $(this).parent().parent().parent();
+                       var Dname = Btr.children()[0].innerHTML;
+                           $.ajax({
+                               type:'get',
+                               dataType:'json',
+                               data:{
+                                   name:Dname
+                               },
+                               url:'lockuser.php',
+                               success:function (data) {
+                                   load();
+
+                               },
+                               error:function () {
+                                   console.log(0);
+                               }
+                           })
+//
+                   });
+                 
+                //-------设置修改密码函数
+                   $('.edit').on('click',function () {
+                       //---获取用户名
+                       var Btr = $(this).parent().parent().parent();
+                       var Dname = Btr.children()[0].innerHTML;
+                       console.log(Dname);
+                       $.ajax({
+                           type:'get',
+                           dataType:'json',
+                           data:{
+                               name:Dname
+                           },
+                           url:'editpwd.php',
+                           success:function (data) {
+                               console.log(data);
+                           },
+                           error:function () {
+                               console.log(0);
+                           }
+                       })
+                   })
+                   
+                },
+                error:function () {
+                    console.log(0);
+                }
+            })
+
+        }
+
+    });
+
+</script>
+<script>
+    //----用于查询
+    $(function () {
+        var newTB = $('<table class="table" id="tb"><thead><tr><td>用户名</td><td>性别</td><td>年龄</td><td>等级</td><td>操作</td></tr></thead><tbody></tbody></table>');
+        $('#search').append('<br>');
+        $('#search').append('<br>');
+        $('#search').append(newTB);
+    });
+    function Search() {
+        $('#tb tbody').html('');
+        var user = $('#username').val();
+        console.log(user);
+        $.ajax({
+           type:'get',
+           dataType:'json',
+           url:'searchuser.php',
+           data:{
+               username:user
+           },
+           success:function (data) {
+               console.log(data);
+               //添加
+               var newTr = $('<tr></tr>');
+
+               //---定义用户组
+               var newName = $('<td>'+data.name+'</td>');
+               //---定义性别组
+               var newSex = $('<td>'+data.sex+'</td>');
+               //---定义年龄组
+               var newAge = $('<td>'+data.age+'</td>');
+               //---定义等级组
+               var newLevel = $('<td>'+data.juris+'</td>');
+               if(data.juris==1){
+                   //---定义操作钮
+                   var newEditor = $('<td class="dropdown"><button class="btn btn-default dropdown-toggle" data-toggle="dropdown">操作<span class="caret"></span></button><ul class="dropdown-menu" role="menu"><li class="dele"><a href="###">删除</a></li><li class="lock"><a href="###">锁定</a></li><li><a href="###">修改密码</a></li></ul></td>');
+               }else{
+                   var newEditor = $('<td class="dropdown"><button class="btn btn-default dropdown-toggle" data-toggle="dropdown">操作<span class="caret"></span></button><ul class="dropdown-menu" role="menu"><li class="dele"><a href="###">删除</a></li><li class="lock"><a href="###">解锁</a></li><li><a href="###">修改密码</a></li></ul></td>');
+               }
+               //---添加
+               newTr.append(newName);
+               newTr.append(newSex);
+               newTr.append(newAge);
+               newTr.append(newLevel);
+               newTr.append(newEditor);
+               $('#tb').append(newTr);
+               //----设置删除函数
+               $('.dele').on('click',function () {
+                   //---获取用户名
+                   var Btr = $(this).parent().parent().parent();
+                   var Dname = Btr.children()[0].innerHTML;
+                   console.log(Dname);
+                   $.ajax({
+                       type:'get',
+                       dataType:'json',
+                       data:{
+                           name:Dname
+                       },
+                       url:'deleuser.php',
+                       success:function (data) {
+                           console.log(data);
+                           Search();
+                       },
+                       error:function () {
+                           console.log(0);
+                       }
+                   })
+
+               });
+               //-----设置锁定函数
+               $('.lock').on('click',function () {
+                   //---获取用户名
+                   var Btr = $(this).parent().parent().parent();
+                   var Dname = Btr.children()[0].innerHTML;
+                   $.ajax({
+                       type:'get',
+                       dataType:'json',
+                       data:{
+                           name:Dname
+                       },
+                       url:'lockuser.php',
+                       success:function (data) {
+                           Search();
+
+                       },
+                       error:function () {
+                           console.log(0);
+                       }
+                   })
+//
+               });
+               //-------设置修改密码函数
+               $('.edit').on('click',function () {
+                   //---获取用户名
+                   var Btr = $(this).parent().parent().parent();
+                   var Dname = Btr.children()[0].innerHTML;
+                   console.log(Dname);
+                   $.ajax({
+                       type:'get',
+                       dataType:'json',
+                       data:{
+                           name:Dname
+                       },
+                       url:'editpwd.php',
+                       success:function (data) {
+                           console.log(data);
+                       },
+                       error:function () {
+                           console.log(0);
+                       }
+                   })
+               })
+
+
+
+           },
+           error:function (data) {
+               alert('查无此人');
+           }
+        });
+        return false;
+
+    }
+
+</script>
+
+<script>
+    $('#searchuser').click(function () {
+        $('#suser').addClass("active");
+        $('#auser').removeClass("active");
+        $('#muser').removeClass("active");
+    })
+    $('#showuser').click(function () {
+        $('#muser').addClass("active");
+        $('#auser').removeClass("active");
+        $('#suser').removeClass("active");
+    })
+    $('#addusers').click(function () {
+        $('#auser').addClass("active");
+        $('#suser').removeClass("active");
+        $('#muser').removeClass("active");
+    })
+
+//另一组
+    $('#suser').click(function () {
+         //左边导航栏变化
+         $('#auser').removeClass("active");
+         $('#muser').removeClass("active");
+         $('#suser').addClass("active");
+
+         //导航头部变化
+         $('#showuser').removeClass("active");
+         $('#addusers').removeClass("active");
+         $('#searchuser').addClass("active");
+
+         //内容变化
+         $('#lists').removeClass("active");
+         $('#adds').removeClass("active");
+         $('#search').addClass("active");
+
+    })
+
+    $('#muser').click(function () {
+        //左边导航栏变化
+        $('#auser').removeClass("active");
+        $('#suser').removeClass("active");
+        $('#muser').addClass("active");
+
+        //导航头部变化
+        $('#searchuser').removeClass("active");
+        $('#addusers').removeClass("active");
+        $('#showuser').addClass("active");
+
+        //内容变化
+        $('#search').removeClass("active");
+        $('#adds').removeClass("active");
+        $('#lists').addClass("active");
+
+    })
+
+    $('#auser').click(function () {
+        //左边导航栏变化
+        $('#muser').removeClass("active");
+        $('#suser').removeClass("active");
+        $('#auser').addClass("active");
+
+        //导航头部变化
+        $('#showuser').removeClass("active");
+        $('#searchuser').removeClass("active");
+        $('#addusers').addClass("active");
+
+        //内容变化
+        $('#search').removeClass("active");
+        $('#lists').removeClass("active");
+        $('#adds').addClass("active");
+
+    })
+
+
+
+
+
+
+
+
+
+</script>
+
+<script>
+    function addornot() {
+        var x = $('#newpass').val();
+        var y = $('#newpass2').val();
+        if(x !== y){
+            alert("密码不一致");
+            return false;
+        }else{
+            return false;
+
+        }
+    }
+
+</script>
+<script>
+  function LoadPages() {
+      $('.page').html('');
+      var $table = $('#lists .table');
+
+      var currentPage = 0;//当前页默认值为0
+      var pageSize = 4;//每一页显示的数目
+      $table.bind('paging',function(){
+          $table.find('tbody tr').hide().slice(currentPage*pageSize,(currentPage+1)*pageSize).show();//---总体隐藏，这一部分显示
+      });
+      var sumRows = $("#lists .table tbody").find("tr").length;
+      console.log(sumRows);
+      var sumPages = Math.ceil(sumRows/pageSize);//总页数
+      console.log(sumPages);
+
+      var $pager = $('<div class="page"></div>');  //新建div，放入a标签,显示底部分页码
+      for(var pageIndex = 0 ; pageIndex<sumPages ; pageIndex++){
+          $('<a href="#" id="pageStyle" onclick="changCss(this)"><span>'+(pageIndex+1)+'</span></a>').bind("click",{"newPage":pageIndex},function(event){
+              currentPage = event.data["newPage"];
+              $table.trigger("paging");
+              //触发分页函数
+          }).appendTo($pager);
+
+      }
+      $pager.insertAfter($table);
+      $table.trigger("paging");
+      
+      //默认第一页的a标签效果
+      var $pagess = $('#pageStyle');
+      $pagess[0].style.backgroundColor="lightskyblue";
+      $pagess[0].style.color="#ffffff";
+  }
+
+    //a链接点击变色，再点其他回复原色
+    function changCss(obj){
+        var arr = document.getElementsByTagName("a");
+        for(var i=0;i<arr.length;i++){
+            if(obj===arr[i]){       //当前页样式
+                obj.style.backgroundColor="lightskyblue";
+                obj.style.color="#ffffff";
+            }
+            else
+            {
+                arr[i].style.color="";
+                arr[i].style.backgroundColor="";
+            }
+        }
+    }
+</script>
+</body>
+</html>
