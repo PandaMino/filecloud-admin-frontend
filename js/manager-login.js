@@ -16,12 +16,16 @@ $('#Mclick').on('click',function(){
     }
     document.getElementById("Mconfirm").innerHTML = result;
 });
+$('#Mclick').trigger('click');
 $("#Msub").on("click",function () {
     var ck = document.getElementById("ck");
     var Mconfirm = document.getElementById("Mconfirm");
     var content = Mconfirm.innerHTML;
-    if(ck.value.toUpperCase()==content.toUpperCase()){
-        alert("验证码输入正确！");
+    if(ck.value.toUpperCase()==content.toUpperCase()&&ck.value.toUpperCase()!=''){
+//      alert("验证码输入正确！");
+		$('.msg').css({
+			display:'none'
+		})
         Musername=$("#username").val();
         Mpassword=$("#pwd").val();
         $.ajax({
@@ -34,11 +38,15 @@ $("#Msub").on("click",function () {
             		console.log(data[i].Musername);
             		if(Musername==data[i].Musername){
             			if(Mpassword==data[i].Mpassword){
-            				alert('登录成功！');
+//          				alert('登录成功！');
             				i++;
-            				window.location = 'back_content';
+            				setCookie('username',Musername,1);
+            				window.location = 'back-count.html';
             			}else{
-            				alert('密码不正确，请重新输入！');
+//          				alert('密码不正确，请重新输入！');
+            				$('.msg').eq(1).css({
+					        	display:'inline-block'
+					        });
             				$("#pwd").val('');
             				return 0;
             			}
@@ -46,14 +54,20 @@ $("#Msub").on("click",function () {
             	}
             	console.log(i);
     			if(i==2){
-    				alert('账号不存在，请重新输入！');
+//  				alert('账号不存在，请重新输入！');
+    				$('.msg').eq(0).css({
+			        	display:'inline-block'
+			        });
 	    			$("#pwd").val('');
 	    			$("#username").val('');
     			}
             }
         })
     }else {
-        alert("验证码为空或者输入不正确。。。");
+//      alert("验证码为空或者输入不正确。。。");
+        $('.msg').eq(2).css({
+        	display:'inline-block'
+        });
         ck.value = "";
     }
 });
