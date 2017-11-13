@@ -22,4 +22,5 @@ function removeCookie(key){
 $('#name').text(getCookie('username'));
 $('#logout').on('click',function(){
 	removeCookie('username');
+	window.location = 'index.html';
 });
