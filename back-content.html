@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1 , user-scalable=no">
+    <title>后台内容</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css" class="css">
+    <style>
+        *{
+            list-style: none;
+            text-decoration: none;
+        }
+        .col-1{
+            padding-left:0;
+            padding-right:0;
+        }
+        #nav1 ul{
+            padding-left:0;
+            border:1px solid #ddd;
+            border-radius: 5px;
+        }
+        #nav1 ul li{
+            line-height: 40px;
+            padding-left:15px;
+
+            border-bottom:1px solid #ddd;
+        }
+        #nav1 ul li a:hover{
+            text-decoration: none;
+        }
+        #nav1 ul li.active,#nav1 ul li:hover{
+            background: lightskyblue;
+        }
+        #nav1 ul li.active a,#nav1 ul li:hover>a{
+            color:#fff;
+        }
+        .adds{
+            margin-top:14px;
+        }
+        footer{
+            margin-top:25px;
+            border-top:1px solid #ddd;
+        }
+        #logout{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<!-- 导航 -->
+<nav class="navbar navbar-default">
+    <div class="col-sm-1"></div>
+    <div class="col-sm-10">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="#" class="navbar-brand">后台管理</a>
+                <!-- 汉堡按钮 -->
+                <button class="navbar-toggle" data-toggle="collapse" data-target="#admins">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="admins">
+                <ul class="nav navbar-nav">
+                    <li><a href="back-user.html"><span class="glyphicon glyphicon-user"></span> 用户管理</a></li>
+                    <li class="active"><a href=""><span class="glyphicon glyphicon-list-alt"></span> 文件管理</a></li>
+                    <li><a href="back-count.html"><span class="glyphicon glyphicon-signal"></span> 网站数据统计</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="name">
+                            admin<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="manager-setting.html"><span class="glyphicon glyphicon-cog"></span> 个人设置</a></li>
+                        </ul>
+                    </li>
+                    <li><a id="logout"><span class="glyphicon glyphicon-off"></span> 退出</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+    <div class="col-sm-1"></div>
+</nav>
+<!-- 内容 -->
+<div class="container">
+    <div class="row">
+        <div class="col-sm-2 col-1">
+                <nav id="nav1">
+                    <ul>
+                        <li class="active" id="mcon"><a href="">分类管理</a></li>
+                        <li id="acon"><a href="">文件审核</a></li>
+
+                    </ul>
+                </nav>
+            </div>
+        <div class="col-sm-10">
+            分类管理
+            <hr>
+            <ul class="nav nav-tabs">
+                <li class="active" id="mcont"><a href="#guan" data-toggle="tab">分类管理</a></li>
+                <li id="acont"><a href="#adds" data-toggle="tab">文件审核</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active clearfix" id="guan">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <td>文件标题</td>
+                                <td>作者</td>
+                                <td>上传时间</td>
+                                <td>操作</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                    <ul class="pagination pull-right">
+                        <li><a href="#">&laquo;</a></li>
+                        <li class="active"><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">&raquo;</a></li>
+                    </ul>
+                </div>
+                <div class="tab-pane" id="adds">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <td>文件名</td>
+                                <td>文件类型</td>
+                                <td>上传者</td>
+                                <td>上传时间</td>
+                                <td>审核状态</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                    <ul class="pagination pull-right">
+                    </ul>
+                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<footer class="text-center col-sm-6 col-sm-offset-3">
+    <p>Copyright@2012-2015     ICP备xxxxxxxx号</p>
+</footer>
+<script src="js/jquery.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/back-content.js"></script>
+<script>
+    $('#mcont').click(function () {
+        $('#acon').removeClass("active");
+        $('#mcon').addClass("active");
+    })
+
+    $('#acont').click(function () {
+        $('#mcon').removeClass("active");
+        $('#acon').addClass("active");
+    })
+
+    //另一组
+    $('#mcon').click(function () {
+        //左边变化
+        $('#acon').removeClass("active");
+        $('#mcon').addClass("active");
+
+        //右边导航变化
+        $('#acont').removeClass("active");
+        $('#mcont').addClass("active");
+
+        //内容变化
+        $('#adds').removeClass("active");
+        $('#guan').addClass("active");
+    })
+
+    $('#acon').click(function () {
+        //左边变化
+        $('#mcon').removeClass("active");
+        $('#acon').addClass("active");
+
+        //右边导航变化
+        $('#mcont').removeClass("active");
+        $('#acont').addClass("active");
+
+        //内容变化
+        $('#guan').removeClass("active");
+        $('#adds').addClass("active");
+    })
+
+
+
+</script>
+<script src="js/cookie.js"></script>
+</body>
+</html>
