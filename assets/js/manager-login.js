@@ -29,7 +29,7 @@ $("#Msub").on("click",function () {
         Musername=$("#username").val();
         Mpassword=$("#pwd").val();
         $.ajax({
-            url:"Mpassword.json",
+            url:"data/Mpassword.json",
             type:"get",
             dataType:"json",
             success:function (data) {
@@ -71,3 +71,10 @@ $("#Msub").on("click",function () {
         ck.value = "";
     }
 });
+if($(window).height()>650){
+	$('.footer').css({
+		position:'fixed',
+		left:0,
+		bottom:0
+	})
+}
