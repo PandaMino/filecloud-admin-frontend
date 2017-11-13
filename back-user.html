@@ -67,6 +67,9 @@
             font-size: 18px;
             margin-right:6px;
         }
+        #logout{
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -86,9 +89,9 @@
             </div>
             <div class="collapse navbar-collapse" id="admins">
                 <ul class="nav navbar-nav">
-                    <li><a href="#"><span class="glyphicon glyphicon-home"></span> 后台首页</a></li>
                     <li class="active"><a href=""><span class="glyphicon glyphicon-user"></span> 用户管理</a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-list-alt"></span> 文件管理</a></li>
+                    <li><a href="back-content.html"><span class="glyphicon glyphicon-list-alt"></span> 文件管理</a></li>
+                    <li><a href="back-count.html"><span class="glyphicon glyphicon-signal"></span> 网站数据统计</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
@@ -96,14 +99,10 @@
                             admin<span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="#"><span class="glyphicon glyphicon-screenshot"></span> 前台首页</a></li>
-                            <li><a href=""><span class="glyphicon glyphicon-user"></span> 个人主页</a></li>
-                            <li><a href=""><span class="glyphicon glyphicon-cog"></span> 个人设置</a></li>
-                            <li><a href=""><span class="glyphicon glyphicon-credit-card"></span> 账户中心</a></li>
-                            <li><a href=""><span class="glyphicon glyphicon-heart"></span> 我的收藏</a></li>
+                            <li><a href="manager-setting.html"><span class="glyphicon glyphicon-cog"></span> 个人设置</a></li>
                         </ul>
                     </li>
-                    <li><a href="#"><span class="glyphicon glyphicon-off"></span> 退出</a></li>
+                    <li><a id="logout"><span class="glyphicon glyphicon-off"></span> 退出</a></li>
                 </ul>
             </div>
         </div>
@@ -184,5 +183,6 @@
 <script src="js/loads.js"></script>
 <script src="js/changeTba.js"></script>
 <script src="js/useradmin.js"></script>
+<script src="js/cookie.js"></script>
 </body>
 </html>

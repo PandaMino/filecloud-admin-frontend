@@ -1,5 +1,5 @@
 $(function () {
-    load('showusers.php','#lists tbody:eq(0)');
+    load();
     SearchUser('#search');
     changesCss();
 });
