@@ -2,7 +2,7 @@
 var Mpwd = '';
 $('#admName').val(getCookie('username'));
 $.ajax({
-	url:'Mpassword.json',
+	url:'data/Mpassword.json',
 	type:'get',
 	dataType:'json',
 	success:function(data){
@@ -42,7 +42,7 @@ $('#sub').on('click',function(){
 	var repwd = $('#admPwd_reNew').val();
 			console.log(oldpwd);
 	$.ajax({
-		url:'Mpassword.json',
+		url:'data/Mpassword.json',
 		type:'get',
 		dataType:'json',
 		success:function(data){
