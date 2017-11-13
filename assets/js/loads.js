@@ -1,5 +1,5 @@
 function load() {
-    $.getJSON('users.json',function (data) {
+    $.getJSON('data/users.json',function (data) {
         console.log(data);
         $.each(data,function (index,element) {
 
@@ -46,7 +46,7 @@ function Search() {
     //----定义查找标志位
     var flag = 0;
     //----获取json数据
-    $.getJSON('users.json',function (data) {
+    $.getJSON('data/users.json',function (data) {
         //---遍历查找相应数据
         $.each(data,function (index,element) {
             if(element['name']===user){
